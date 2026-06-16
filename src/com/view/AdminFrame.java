@@ -48,7 +48,7 @@ public class AdminFrame extends JFrame {
         txtUser = new JTextField();
         txtPass = new JTextField();
 
-        // SESUAIKAN DENGAN ENUM DI DATABASE KAMU (huruf kecil)
+        //cmb buat pilih role
         cmbRole = new JComboBox<>(new String[]{"petugas", "admin"});
 
         JButton btnSimpan = new JButton("💾 SIMPAN USER BARU");

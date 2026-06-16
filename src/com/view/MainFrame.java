@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
     private JLabel lblPlat, lblDurasi, lblTotal;
     private JButton btnBayar;
 
-    // Komponen Tab Laporan (BARU)
+    // Komponen Tab Laporan
     private JTable tblLaporan;
     private JLabel lblTotalPendapatanShift;
     private DefaultTableModel tableModelLaporan;
@@ -79,13 +79,13 @@ public class MainFrame extends JFrame {
         btnSimpan.setForeground(Color.WHITE);
         btnSimpan.setFont(new Font("Arial", Font.BOLD, 14));
 
-        JButton btnLihat = new JButton("Lihat Kendaraan Menginap");
+        JButton btnLihat = new JButton("Lihat Kendaraan yang Sedang Parkir");
 
         // Layouting
         g.gridx=0; g.gridy=0; p.add(new JLabel("No Polisi:"), g);
         g.gridx=1; p.add(txtPlat, g);
 
-        g.gridx=0; g.gridy=1; p.add(new JLabel("Jenis:"), g);
+        g.gridx=0; g.gridy=1; p.add(new JLabel("Jenis Kendaraan:"), g);
         g.gridx=1; p.add(cmbJenis, g);
 
         g.gridx=0; g.gridy=2; g.gridwidth=2;
@@ -124,9 +124,29 @@ public class MainFrame extends JFrame {
 
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()) {
-                JOptionPane.showMessageDialog(this, "✅ Tiket Berhasil!\nID Tiket: " + rs.getInt(1));
+                int idTiketBaru = rs.getInt(1); // Ambil ID Tiket yang baru dibuat
+
+                // === LOGIKA CETAK TIKET DIMULAI DISINI ===
+                String jenisStr = (idJenis == 1) ? "MOBIL" : "MOTOR"; // Sesuaikan teks
+                DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                String waktuStr = LocalDateTime.now().format(fmt);
+
+                TiketPrinter printer = new TiketPrinter(
+                        String.valueOf(idTiketBaru),
+                        plat.toUpperCase(),
+                        jenisStr,
+                        waktuStr,
+                        currentUsername
+                );
+                printer.printTiket();
+
+                JOptionPane.showMessageDialog(this, "✅ Data Tersimpan & Tiket Dicetak!\nID Tiket: " + idTiketBaru);
             }
-        } catch (Exception ex) { ex.printStackTrace(); }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal simpan/cetak: " + ex.getMessage());
+        }
+
     }
 
     private void showParkedList() {
@@ -155,7 +175,7 @@ public class MainFrame extends JFrame {
 
         JButton btnCek = new JButton("🔍 CEK TARIF");
         chkTiketHilang = new JCheckBox("Tiket Hilang?");
-        chkTiketHilang.setForeground(Color.RED);
+        chkTiketHilang.setForeground(Color.green);
         chkTiketHilang.setFont(new Font("Arial", Font.BOLD, 12));
 
         top.add(new JLabel("ID Tiket:"));
@@ -270,7 +290,6 @@ public class MainFrame extends JFrame {
                 if (tanyaPrint == JOptionPane.YES_OPTION) {
                     try {
                         String strukId = String.valueOf(selectedIdTransaksi);
-                        // Bersihkan teks label biar cuma ambil nomor platnya saja
                         String strukPlat = lblPlat.getText().replace("Plat Nomor: ", "").replace("Plat: ", "").trim();
                         String strukDurasi = String.valueOf(calculatedDuration);
                         String strukTotal = lblTotal.getText();
@@ -329,7 +348,7 @@ public class MainFrame extends JFrame {
         JPanel pAtas = new JPanel(new BorderLayout(0, 15)); // Container atas
 
         // A. Pasang Panel Statistik (3 Kartu Warna)
-        // Pastikan method createPanelStatistik() sudah Anda copy di bawah file
+        //  method createPanelStatistik()
         pAtas.add(createPanelStatistik(), BorderLayout.CENTER);
 
         // B. Toolbar (Judul & Tombol) ditaruh di bawah kartu

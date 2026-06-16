@@ -70,7 +70,7 @@ public class LoginFrame extends JFrame {
                 }
 
                 // --- LOGIKA CEK ROLE ---
-                // Cek apakah role-nya "admin" (huruf kecil sesuai database)
+                // Cek apakah role-nya "admin"
                 if ("admin".equalsIgnoreCase(role)) {
                     new AdminFrame(nama).setVisible(true); // Buka Panel Admin
                 } else {
