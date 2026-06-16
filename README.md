@@ -5,7 +5,7 @@
 ### 🧑‍💻 Pengembang
 - **Nama** : Noval Berauh
 - **NIM** : 2421052
-- **Prodi** : [MASUKKAN PRODI KAMU, MISAL: SISTEM INFORMASI]
+- **Prodi** : [SISTEM INFORMASI]
 
 ---
 
@@ -41,11 +41,11 @@ Aplikasi ini adalah sistem manajemen parkir berbasis desktop (Java) yang diranca
 
 | Halaman Login | Dashboard Kasir / Petugas |
 |---|---|
-| ![Login Screen](src/img/login_Check_Parkir) | ![Dashboard](path_ke_gambar_dashboard.png) |
+| ![Login Screen](src/img/login_Check_Parkir) | ![Dashboard](src/img/dashboard_logout) |
 
 | Admin Panel & Pengaturan | Hasil Cetak Struk / Laporan |
 |---|---|
-| ![Admin Panel](path_ke_gambar_admin.png) | ![Struk Laporan](path_ke_gambar_laporan.png) |
+| ![Admin Panel](src/img/admin) | ![Struk Laporan](src/img/Tarif_Struk) |
 
 ---
 
