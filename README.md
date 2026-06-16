@@ -41,7 +41,7 @@ Aplikasi ini adalah sistem manajemen parkir berbasis desktop (Java) yang diranca
 
 | Halaman Login | Dashboard Kasir / Petugas |
 |---|---|
-| ![Login Screen](path_ke_gambar_login.png) | ![Dashboard](path_ke_gambar_dashboard.png) |
+| ![Login Screen](src/img/login_Check_Parkir) | ![Dashboard](path_ke_gambar_dashboard.png) |
 
 | Admin Panel & Pengaturan | Hasil Cetak Struk / Laporan |
 |---|---|
